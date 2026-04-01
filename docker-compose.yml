@@ -1,0 +1,28 @@
+services:
+  # 데이터베이스 (항상 가동)
+  db:
+    image: postgres:15-alpine
+    container_name: travel-db
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: traveldb
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+
+  # 리버스 프록시 (항상 가동)
+  nginx:
+    image: nginx:alpine
+    container_name: travel-nginx
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - db
+
+networks:
+  default:
+    name: travel-network
