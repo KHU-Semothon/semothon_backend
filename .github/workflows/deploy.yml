@@ -21,13 +21,18 @@ jobs:
           chmod +x ./gradlew
           ./gradlew build -x test
 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      # 2. Buildx 셋업
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      # 3. 도커 빌드 및 푸시 (run 들여쓰기 수정됨!)
       - name: Docker Build & Push
-          run: |
-            echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-            docker buildx build --platform linux/arm64 -t ${{ secrets.DOCKER_USERNAME }}/travel-app:latest --push .
+        run: |
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+          docker buildx build --platform linux/arm64 -t ${{ secrets.DOCKER_USERNAME }}/travel-app:latest --push .
 
       - name: Deploy to OCI
         uses: appleboy/ssh-action@master
