@@ -41,4 +41,4 @@ jobs:
           username: ubuntu
           key: ${{ secrets.OCI_SSH_KEY }}
           script: |
-            sudo sh /home/ubuntu/travel-project/deploy.sh
+            sudo bash /home/ubuntu/travel-project/deploy.sh
