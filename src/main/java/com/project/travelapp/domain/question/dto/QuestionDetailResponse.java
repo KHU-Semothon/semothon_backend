@@ -17,9 +17,12 @@ public class QuestionDetailResponse {
     private String locationKeyword;
     private String authorNickname;
     private LocalDateTime createdAt;
+    private int likeCount;
+    private Boolean isLiked;
+    private List<String> mediaUrls;
     private List<AnswerResponse> answers;
 
-    public QuestionDetailResponse(Question question) {
+    public QuestionDetailResponse(Question question, boolean isLiked) {
         this.questionId = question.getId();
         this.title = question.getTitle();
         this.content = question.getContent();
@@ -27,6 +30,9 @@ public class QuestionDetailResponse {
         this.locationKeyword = question.getLocationKeyword();
         this.authorNickname = question.getUser().getNickname();
         this.createdAt = question.getCreatedAt();
+        this.likeCount = question.getLikeCount();
+        this.isLiked = isLiked;
+        this.mediaUrls = question.getMediaUrls();
         this.answers = question.getAnswers().stream()
                 .map(AnswerResponse::new)
                 .collect(Collectors.toList());
