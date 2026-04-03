@@ -34,13 +34,16 @@ public class Pin extends BaseTimeEntity {
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    private Integer radius;
+
     @Builder
-    public Pin(User user, Double latitude, Double longitude, String pinType, String title, String description) {
+    public Pin(User user, Double latitude, Double longitude, String pinType, String title, String description, Integer radius) {
         this.user = user;
         this.latitude = latitude;
         this.longitude = longitude;
         this.pinType = pinType;
         this.title = title;
         this.description = description;
+        this.radius = radius;
     }
 }

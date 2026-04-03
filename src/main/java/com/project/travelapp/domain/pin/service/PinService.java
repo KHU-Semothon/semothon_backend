@@ -32,6 +32,7 @@ public class PinService {
                 .pinType(request.getPinType())
                 .title(request.getTitle())
                 .description(request.getDescription())
+                .radius(request.getRadius())
                 .build();
 
         pinRepository.save(pin);

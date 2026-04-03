@@ -10,6 +10,7 @@ public class PinResponse {
     private Double longitude;
     private String pinType;
     private String title;
+    private Integer radius;
 
     public PinResponse(Pin pin) {
         this.pinId = pin.getId();
@@ -17,5 +18,6 @@ public class PinResponse {
         this.longitude = pin.getLongitude();
         this.pinType = pin.getPinType();
         this.title = pin.getTitle();
+        this.radius = pin.getRadius();
     }
 }
