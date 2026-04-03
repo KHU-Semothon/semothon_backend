@@ -15,10 +15,15 @@ spring:
     show-sql: true
     open-in-view: false
 
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 100MB
+
 jwt:
   secret: c2VjcmV0S2V5Rm9yVHJhdmVsQXBwQXV0aGVudGljYXRpb25TaG91bGRCZUxvbmcxMjM= # base64 encoded ?? 32???
   access-expiration: 3600000 # 1??
 
 app:
-  base-url: http://localhost:8080
-  upload-dir: uploads
+  base-url: http://daramjwi.com
+  upload-dir: /app/uploads
