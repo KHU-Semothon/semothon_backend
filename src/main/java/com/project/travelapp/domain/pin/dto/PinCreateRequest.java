@@ -2,10 +2,15 @@ package com.project.travelapp.domain.pin.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class PinCreateRequest {
+
     @NotNull(message = "위도는 필수입니다.")
     private Double latitude;
 
