@@ -13,22 +13,6 @@ services:
     volumes:
       - ./pgdata:/var/lib/postgresql/data
 
-  # Spring Boot 앱
-  app:
-    image: ghcr.io/khu-semothon/semothon_backend:latest
-    container_name: travel-app
-    restart: always
-    ports:
-      - "8080:8080"
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/traveldb
-      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
-      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
-    volumes:
-      - ./uploads:/app/uploads
-    depends_on:
-      - db
-
   # 리버스 프록시 (항상 가동)
   nginx:
     image: nginx:alpine
@@ -39,7 +23,6 @@ services:
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
     depends_on:
-      - app
       - db
 
 networks:
