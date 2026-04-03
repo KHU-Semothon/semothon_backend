@@ -27,7 +27,7 @@ public class User extends BaseTimeEntity {
     private String nickname;
 
     @Column(nullable = false)
-    private Integer trustScore = 0;
+    private Integer trustScore;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TravelExperience> travelExperiences = new ArrayList<>();
@@ -37,7 +37,7 @@ public class User extends BaseTimeEntity {
         this.email = email;
         this.password = password;
         this.nickname = nickname;
-        this.trustScore = 0;
+        this.trustScore = 90;
     }
 
     public void addTrustScore(int score) {
