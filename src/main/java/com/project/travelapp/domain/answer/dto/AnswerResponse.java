@@ -6,6 +6,7 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.ArrayList;
 
 @Getter
 public class AnswerResponse {
@@ -26,7 +27,9 @@ public class AnswerResponse {
         this.authorExperience = buildExperience(answer);
         this.isAccepted = answer.getIsAccepted();
         this.createdAt = answer.getCreatedAt();
-        this.mediaUrls = answer.getMediaUrls();
+        this.mediaUrls = (answer.getMediaUrls() != null)
+                ? new ArrayList<>(answer.getMediaUrls())
+                : new ArrayList<>();
     }
 
     private String buildExperience(Answer answer) {

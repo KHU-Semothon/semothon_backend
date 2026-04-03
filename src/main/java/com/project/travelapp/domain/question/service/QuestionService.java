@@ -59,10 +59,8 @@ public class QuestionService {
 
         boolean isLiked = false;
         if (email != null) {
-            Optional<User> userOpt = userRepository.findByEmail(email);
-            if (userOpt.isPresent()) {
-                isLiked = questionLikeRepository.existsByQuestionAndUser(question, userOpt.get());
-            }
+            User user = userRepository.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("유저 찾을 수 없음"));
+            isLiked = questionLikeRepository.existsByQuestionAndUser(question, user);
         }
 
         return new QuestionDetailResponse(question, isLiked);
