@@ -35,15 +35,37 @@ public class Question extends BaseTimeEntity {
     @Column(length = 100)
     private String locationKeyword;
 
+    @Column(nullable = false)
+    private int likeCount = 0;
+
+    @ElementCollection
+    @CollectionTable(name = "question_media_urls", joinColumns = @JoinColumn(name = "question_id"))
+    @Column(name = "media_url")
+    private List<String> mediaUrls = new ArrayList<>();
+
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Answer> answers = new ArrayList<>();
 
     @Builder
-    public Question(User user, String title, String content, String category, String locationKeyword) {
+    public Question(User user, String title, String content, String category, String locationKeyword, List<String> mediaUrls) {
         this.user = user;
         this.title = title;
         this.content = content;
         this.category = category;
         this.locationKeyword = locationKeyword;
+        this.likeCount = 0;
+        if (mediaUrls != null) {
+            this.mediaUrls = mediaUrls;
+        }
+    }
+
+    public void incrementLike() {
+        this.likeCount++;
+    }
+
+    public void decrementLike() {
+        if (this.likeCount > 0) {
+            this.likeCount--;
+        }
     }
 }

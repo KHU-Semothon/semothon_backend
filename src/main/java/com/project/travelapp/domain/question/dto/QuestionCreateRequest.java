@@ -3,6 +3,8 @@ package com.project.travelapp.domain.question.dto;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 
+import java.util.List;
+
 @Getter
 public class QuestionCreateRequest {
     @NotBlank(message = "제목을 입력해주세요.")
@@ -14,5 +16,7 @@ public class QuestionCreateRequest {
     @NotBlank(message = "카테고리를 선택해주세요.")
     private String category;
 
-    private String locationKeyword; // 선택 사항
+    private String locationKeyword;
+
+    private List<String> mediaUrls;
 }

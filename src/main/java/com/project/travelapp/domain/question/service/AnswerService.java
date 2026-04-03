@@ -30,6 +30,7 @@ public class AnswerService {
                 .user(user)
                 .question(question)
                 .content(request.getContent())
+                .mediaUrls(request.getMediaUrls())
                 .build();
 
         answerRepository.save(answer);

@@ -12,7 +12,9 @@ public class QuestionListResponse {
     private String category;
     private String authorNickname;
     private int answerCount;
+    private int likeCount;
     private LocalDateTime createdAt;
+    private String thumbnailUrl;
 
     public QuestionListResponse(Question question) {
         this.questionId = question.getId();
@@ -20,6 +22,8 @@ public class QuestionListResponse {
         this.category = question.getCategory();
         this.authorNickname = question.getUser().getNickname();
         this.answerCount = question.getAnswers().size();
+        this.likeCount = question.getLikeCount();
         this.createdAt = question.getCreatedAt();
+        this.thumbnailUrl = question.getMediaUrls().isEmpty() ? null : question.getMediaUrls().get(0);
     }
 }

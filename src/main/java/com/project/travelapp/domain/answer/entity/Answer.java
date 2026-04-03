@@ -6,6 +6,9 @@ import com.project.travelapp.global.common.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "answers")
 @Getter
@@ -30,12 +33,20 @@ public class Answer extends BaseTimeEntity {
     @Column(nullable = false)
     private Boolean isAccepted = false;
 
+    @ElementCollection
+    @CollectionTable(name = "answer_media_urls", joinColumns = @JoinColumn(name = "answer_id"))
+    @Column(name = "media_url")
+    private List<String> mediaUrls = new ArrayList<>();
+
     @Builder
-    public Answer(Question question, User user, String content) {
+    public Answer(Question question, User user, String content, List<String> mediaUrls) {
         this.question = question;
         this.user = user;
         this.content = content;
         this.isAccepted = false;
+        if (mediaUrls != null) {
+            this.mediaUrls = mediaUrls;
+        }
     }
 
     public void accept() {
