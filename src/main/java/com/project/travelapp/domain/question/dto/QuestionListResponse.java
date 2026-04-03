@@ -15,6 +15,8 @@ public class QuestionListResponse {
     private int likeCount;
     private LocalDateTime createdAt;
     private String thumbnailUrl;
+    private Double latitude;
+    private Double longitude;
 
     public QuestionListResponse(Question question) {
         this.questionId = question.getId();
@@ -25,5 +27,7 @@ public class QuestionListResponse {
         this.likeCount = question.getLikeCount();
         this.createdAt = question.getCreatedAt();
         this.thumbnailUrl = question.getMediaUrls().isEmpty() ? null : question.getMediaUrls().get(0);
+        this.latitude = question.getLatitude();
+        this.longitude = question.getLongitude();
     }
 }

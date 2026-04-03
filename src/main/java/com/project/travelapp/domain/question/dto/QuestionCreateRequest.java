@@ -18,5 +18,8 @@ public class QuestionCreateRequest {
 
     private String locationKeyword;
 
+    private Double latitude;
+    private Double longitude;
+
     private List<String> mediaUrls;
 }

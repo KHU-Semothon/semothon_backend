@@ -18,8 +18,9 @@ public class QuestionDetailResponse {
     private int likeCount;
     private boolean isLiked;
     private List<String> mediaUrls;
+    private Double latitude;
+    private Double longitude;
 
-    // 💡 Entity인 Answer 대신 응답용 DTO 리스트로 변경!
     private List<AnswerResponse> answers;
 
     public QuestionDetailResponse(Question question, boolean isLiked) {
@@ -30,6 +31,8 @@ public class QuestionDetailResponse {
         this.authorNickname = question.getUser().getNickname();
         this.likeCount = question.getLikeCount();
         this.isLiked = isLiked;
+        this.latitude = question.getLatitude();
+        this.longitude = question.getLongitude();
 
         // 컬렉션(List) 데이터는 반드시 Transaction 안에서 값을 미리 꺼내놔야 합니다.
         this.mediaUrls = (question.getMediaUrls() != null)

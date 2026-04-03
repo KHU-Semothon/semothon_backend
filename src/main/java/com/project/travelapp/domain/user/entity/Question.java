@@ -46,8 +46,11 @@ public class Question extends BaseTimeEntity {
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Answer> answers = new ArrayList<>();
 
+    private Double latitude;
+    private Double longitude;
+
     @Builder
-    public Question(User user, String title, String content, String category, String locationKeyword, List<String> mediaUrls) {
+    public Question(User user, String title, String content, String category, String locationKeyword, Double latitude, Double longitude, List<String> mediaUrls) {
         this.user = user;
         this.title = title;
         this.content = content;
@@ -57,6 +60,8 @@ public class Question extends BaseTimeEntity {
         if (mediaUrls != null) {
             this.mediaUrls = mediaUrls;
         }
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public void incrementLike() {

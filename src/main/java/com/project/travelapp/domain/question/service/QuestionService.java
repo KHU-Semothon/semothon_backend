@@ -37,6 +37,8 @@ public class QuestionService {
                 .content(request.getContent())
                 .category(request.getCategory())
                 .locationKeyword(request.getLocationKeyword())
+                .latitude(request.getLatitude())
+                .longitude(request.getLongitude())
                 .mediaUrls(request.getMediaUrls())
                 .build();
 
